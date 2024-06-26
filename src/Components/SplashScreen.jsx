@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const SplashScreen = () => {
+
+  const navigate = useNavigate();  
+
+  useEffect(() => {
+      const timer = setTimeout(() => {
+          navigate('/login');
+      }, 5000); 
+      return () => clearTimeout(timer);
+  }, [navigate]);
+
   return (
     <div className="splash-screen min-h-screen bg-slate-900 flex flex-col justify-center place-items-center gap-2">
       <img className=" h-40 w-40" src="/assets/logo.png" alt="logo"></img>

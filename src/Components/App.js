@@ -1,46 +1,21 @@
-import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SplashScreen from "./SplashScreen";
-import Signup from "./SignUp";
 import Login from "./Login";
-import ForgotPass from "./ForgotPass";
+import ForgotPassword from "./ForgotPass";
+import SignUp from "./SignUp";
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, [navigate]);
-
   return (
-    <div className="App">
-      {loading ? (
-        <SplashScreen />
-      ) : (
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/forgot-password" element={<ForgotPass />} />
-        </Routes>
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<SplashScreen />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </Router>
   );
 };
 
-const AppWrapper = () => (
-  <Router>
-    <App />
-  </Router>
-);
-
-export default AppWrapper;
+export default App;
